@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EST VIA — radionice za djecu i mlade</title>
+  <meta name="description" content="EST VIA u Zagrebu: mentalna aritmetika, kemijske i kreativne radionice, božićne radionice i druge edukativne aktivnosti koje potiču logiku, fokus i ljubav prema znanju." />
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EST VIA — radionice za djecu i mlade" />
+  <meta property="og:description" content="Mentalna aritmetika i kreativne radionice u Zagrebu. Prijave pozivom ili e-mailom." />
+  <meta property="og:image" content="images/logo-estvia.png.png" />
+  <meta property="og:url" content="https://estvia.hr" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <style>
+    :root{
+      --brand1:#BDFEF3;
+      --brand2:#FFEF81;
+      --brand3:#F271BF;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter, Helvetica, Arial, sans-serif; color:var(--text); background:var(--bg);}
+
+    body::before, body::after{content:"";position:fixed;z-index:-1;filter: blur(55px);opacity:.75;}
+    body::before{top:-120px;left:-120px;width:520px;height:520px;background:radial-gradient(closest-side, var(--brand1), transparent 72%);} 
+    body::after{bottom:-140px;right:-140px;width:560px;height:560px;background:radial-gradient(closest-side, var(--brand3), transparent 72%);} 
+    .bg-splash{position:fixed;inset:0;z-index:-2;pointer-events:none;background:
+      radial-gradient(1200px 600px at 50% 20%, color-mix(in oklab, var(--brand2) 35%, transparent), transparent 70%),
+      radial-gradient(900px 500px at 50% 80%, color-mix(in oklab, var(--brand1) 30%, transparent), transparent 70%);
+      animation: estviaPulse 12s ease-in-out infinite alternate;}
+
+
+    header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.1) blur(10px);border-bottom:1px solid rgba(17,24,39,.06);z-index:50}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:10px;align-items:center;text-decoration:none;color:inherit}
+    .brand img{height:44px;width:auto}
+    nav a{color:var(--text);text-decoration:none;margin-left:18px;font-weight:600}
+    nav a:hover{color:#0ea5b7}
+
+    .hero{position:relative}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:
+      radial-gradient(900px 420px at 20% 12%, var(--brand1), transparent 65%),
+      radial-gradient(900px 420px at 80% 88%, var(--brand2), transparent 65%),
+      radial-gradient(700px 360px at 50% 50%, color-mix(in oklab, var(--brand3) 35%, transparent), transparent 70%);} 
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:66px 0}
+    .title{font-size:clamp(28px,4vw,46px);line-height:1.15;margin:10px 0}
+    .subtitle{font-size:18px;color:var(--muted)}
+
+    .hero-logo{display:flex;align-items:center;justify-content:center;padding:0;background:transparent;border:none;box-shadow:none}
+    .hero-logo img{max-width:400px;width:100%;height:auto;display:block;filter:none;background:transparent;border:none;box-shadow:none;mix-blend-mode:multiply;} 
+
+    .btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .06s ease, box-shadow .2s ease}
+    .btn-primary{background: linear-gradient(135deg, var(--brand3), #ff8bd7); color:#fff; box-shadow: 0 10px 25px rgba(242,113,191,.25)}
+    .btn-outline{background:transparent;border:2px solid var(--brand3);color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+
+    section{padding:60px 0;border-top:1px solid rgba(17,24,39,.06)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:24px}
+    h2{margin:0 0 6px;font-size:26px}
+    p.lead{margin:0;color:var(--muted)}
+
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .card{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);min-height:190px;display:flex;flex-direction:column;justify-content:flex-start}
+
+    .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(17,24,39,.08);transition:transform .3s ease, box-shadow .3s ease}
+    .gallery img:hover{transform: translateY(-3px) scale(1.01); box-shadow:0 6px 14px rgba(0,0,0,.14)}
+
+    .reveal{opacity:0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease;}
+    .reveal.visible{opacity:1; transform:none}
+    @media (prefers-reduced-motion: reduce){
+      *{transition:none!important;animation:none!important}
+      .reveal{opacity:1!important;transform:none!important}
+    }
+
+    form{display:grid;gap:12px}
+    input, textarea{width:100%;padding:12px 14px;background:#fff;border:1px solid rgba(17,24,39,.18);border-radius:12px;color:var(--text)}
+    input:focus, textarea:focus{outline:2px solid var(--brand1)}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{padding:26px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(17,24,39,.06)}
+
+    .card.portrait{display:flex;justify-content:center;align-items:center}
+    .card.portrait img{max-width:260px;width:100%;height:auto;display:block}
+
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .hero-inner > div:first-child{order:2}
+      .hero-inner > .hero-logo{order:1; margin-bottom:12px}
+      .hero-logo img{max-width:240px}
+      .card.portrait img{max-width:220px}
+    }
+  @keyframes estviaPulse{
+      0%{background:
+        radial-gradient(1180px 560px at 48% 18%, color-mix(in oklab, var(--brand2) 32%, transparent), transparent 72%),
+        radial-gradient(860px 480px at 52% 82%, color-mix(in oklab, var(--brand1) 28%, transparent), transparent 72%);
+        opacity:.9}
+      100%{background:
+        radial-gradient(1360px 680px at 52% 22%, color-mix(in oklab, var(--brand2) 40%, transparent), transparent 68%),
+        radial-gradient(1000px 560px at 48% 78%, color-mix(in oklab, var(--brand1) 36%, transparent), transparent 68%);
+        opacity:1}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .bg-splash{animation:none}
+    }
+  .section-mentalna{position:relative;border-top:none}
+    .section-mentalna::before{content:"";position:absolute;inset:0;z-index:-1;background:
+      radial-gradient(800px 360px at 15% 20%, color-mix(in oklab, var(--brand1) 35%, transparent), transparent 68%),
+      radial-gradient(900px 420px at 85% 80%, color-mix(in oklab, var(--brand3) 22%, transparent), transparent 70%);} 
+  </style>
+</head>
+<body>
+  <div class="bg-splash" aria-hidden="true"></div>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#početak" aria-label="Početna">
+        <img src="images/logo-estvia.png.png" alt="EST VIA logo" />
+      </a>
+      <nav aria-label="Glavna navigacija">
+        <a href="#mentalna">Mentalna aritmetika</a>
+        <a href="#usluge">Usluge</a>
+        <a href="#o-nama">O nama</a>
+        <a href="#radovi">Radovi</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="početak" class="hero">
+    <div class="container hero-inner">
+      <div>
+        <h1 class="title">Učimo s osmijehom i razumijevanjem</h1>
+        <p class="subtitle">EST VIA je mjesto gdje učenje i rast stapamo sa igrom i znatiželjom. Nudimo radionice mentalne aritmetike, kemijske i kreativne radionice, božićne radionice i druge zanimljive aktivnosti koje potiču logičko razmišljanje, fokus i ljubav prema znanju.</p>
+        <div class="cta" style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#kontakt">Upiši se i ti</a>
+          <a class="btn btn-outline" href="#mentalna">Saznaj više</a>
+        </div>
+      </div>
+      <div class="hero-logo">
+        <img src="images/logo-estvia.png.png" alt="EST VIA logo (hero)" />
+      </div>
+    </div>
+  </main>
+
+  <!-- MENTALNA ARITMETIKA -->
+  <!-- premješteno dolje -->
+
+  <section id="usluge" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Usluge</h2>
+          <p class="lead">Što nudi EST VIA? </p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Mentalna aritmetika</h3>
+          <p>Program koji razvija koncentraciju, pamćenje i samopouzdanje kod djece kroz zabavne i interaktivne vježbe s abakusom. Idealno za uzrast od 4 do 14 godina.</p>
+        </div>
+        <div class="card">
+          <h3>Kemijske radionice</h3>
+          <p>Eksperimenti prilagođeni djeci, sigurno, zanimljivo i edukativno! Učimo o svijetu oko nas kroz boje, reakcije i kreativnost.</p>
+        </div>
+        <div class="card">
+          <h3>Božićne i kreativne radionice</h3>
+          <p>Mašta i vještine u prvom planu: izrada ukrasa, poklona i malih projekata u toplom i poticajnom okruženju.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nama" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>O nama</h2>
+          <p class="lead">Tko smo i zašto nas roditelji biraju.</p>
+        </div>
+      </div>
+      <div class="grid grid-2" style="align-items:center">
+        <div class="card">
+          <p>Ja sam Anamaria Raguž, imam 27 godina, s ponosom se posvećujem radu s djecom. U podučavanju mentalne aritmetike imam sedam godina iskustva i dugogodišnje iskustvo u radu s djecom. Naš pristup temelji se na razumijevanju svakog djeteta i poticanju njihovih jedinstvenih sposobnosti, jer za mene ovo nije samo posao, to je putovanje izvan svakodnevnog, puno više od učionice i predavanja. Svakodnevno, iz predavanja u predavanje, svjedočim nevjerojatnom rastu i sazrijevanju djece, oni su istinski nevjerojatni i posebni. Gledati kako se iz predavanja u predavanje mijenjaju, rastu i razvijaju, ispunjava me neizmjernom srećom. Margaret Mead je rekla: "Djeca se moraju učiti kako da misle, a ne što da misle." Upravo zato vjerujem da ovakve radoinice pomažu djeci da rastu, razvijaju se i istražuju svoje potencijale. Veselim se svakom novom danu, svakoj novoj radionici i svakom novom koraku koji zajedno napravimo prema izvanrednim rezultatima. </p>
+          <p>Smješteni smo u mirnom dijelu Kvaternikovog trga u Zagrebu, lako dostupni, a opet sigurni i udaljeni od prometnice. Roditelji nam vjeruju jer djeci pružamo mjesto gdje mogu učiti, zabaviti se i razvijati uz podršku i osmijeh.</p>
+        </div>
+        <div class="card portrait">
+          <img loading="lazy" src="images/portret.jpg.jpg" alt="Voditeljica EST VIA radionica" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  
+
+  <!-- Cjenik -->
+  
+
+  <!-- Recenzije -->
+  <section id="recenzije" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Što kažu roditelji</h2>
+          <p class="lead">Dio dojmova s radionica.</p>
+        </div>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><p>“Sve bolje računa i sve bolja koncentracija.”</p></div>
+        <div class="card"><p>“Moj sin je brži na ispitima, bolje mu ide učenje, bolje pamti.”</p></div>
+        <div class="card"><p>“U ovom stupnju odrađuju 4 radnje odjednom... Svaka čast trenerici! I naravno djeci :)”</p></div>
+        <div class="card"><p>“Ana je puno sigurnija u sebe, ima izvrsnu koncentraciju i uporna je.”</p></div>
+        <div class="card"><p>“Bolje radne navike. Produljenje perioda koncentracije.”</p></div>
+        <div class="card"><p>“S lakoćom reducira gradivo i ima jako dobru memoriju. Koncentrirana je.”</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTALNA ARITMETIKA (premješteno ispod O nama) -->
+  <section id="mentalna" class="reveal section-mentalna">
+    <div class="container">
+      <div class="grid grid-2" style="align-items:center">
+        <div class="card" style="background:rgba(255,255,255,.85)">
+          <h2>🧮 Mentalna aritmetika — vježba za um i koncentraciju</h2>
+          <p>Mentalna aritmetika program je uz koji djeca razvijaju <strong>kognitivne sposobnosti i socijalne vještine</strong>. Kroz rad s <strong>abakusom</strong> i matematikom kao alatom, djeca na zabavan način poboljšavaju <strong>vizualizaciju, koncentraciju, točnost i brzinu računanja</strong>. Osim brojki, mentalna aritmetika potiče i <strong>samopouzdanje, strpljenje, suradnju</strong> i <strong>pozitivan odnos prema učenju</strong>.</p>
+          <p>Svaki susret traje <strong>120 minuta</strong>, a ovisno o dobi djeteta razlikuje se način rada — kombiniramo <strong>igre, pokret, kreativne aktivnosti</strong> i <strong>rad na abakusu</strong> kako bi svako dijete napredovalo u svom ritmu.</p>
+          <p>Upisi su otvoreni za djecu <strong>od 4 do 14 godina</strong>. Program se sastoji od <strong>10 razina</strong>, a svaka razina ima <strong>12 susreta</strong> (otprilike tri mjeseca rada).</p>
+          <div class="grid grid-3" style="margin-top:8px">
+            <div class="card"><strong>Cijena mjesečno</strong><br/>75 €</div>
+            <div class="card"><strong>Cijena po razini</strong><br/>225 € (12 × 120 min)</div>
+            <div class="card"><strong>Prijava</strong><br/><a href="#kontakt">Pošalji upit</a></div>
+          </div>
+          <a class="btn btn-primary" href="#kontakt" style="margin-top:14px">Pošalji upit</a>
+        </div>
+        <div class="card" style="display:flex;justify-content:center;align-items:center">
+          <img src="images/galerija-6.jpg.jpg" alt="Abakus i mentalna aritmetika" style="max-width:420px;width:100%;border-radius:14px" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="radovi" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Naši radovi</h2>
+          <p class="lead">Mali izbor trenutaka iz radionica i prostora.</p>
+        </div>
+      </div>
+      <div class="gallery">
+        <img loading="lazy" src="images/galerija-1.jpg.jpg" alt="Dječji crteži i radovi" />
+        <img loading="lazy" src="images/galerija-2.jpg.jpg" alt="Stol s radovima i bojicama" />
+        <img loading="lazy" src="images/galerija-3.jpg.jpg" alt="Radni listići i pribor" />
+        <img loading="lazy" src="images/galerija-4.jpg.jpg" alt="Detalj zida s slovom B" />
+        <img loading="lazy" src="images/galerija-5.jpg.jpg" alt="Natpis na zidu prostora" />
+        <img loading="lazy" src="images/galerija-6.jpg.jpg" alt="Abakus u učionici" />
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="reveal">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2>Kontakt</h2>
+          <p class="lead">Pošaljite upit ili dogovorite probni sat.</p>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <form action="https://formspree.io/f/mnnqlqpl" method="POST">
+            <label>
+              Ime i prezime
+              <input name="ime" required placeholder="Vaše ime" />
+            </label>
+            <label>
+              E-mail
+              <input name="email" type="email" required placeholder="ime@primjer.hr" />
+            </label>
+            <label>
+              Poruka
+              <textarea name="poruka" required placeholder="Napišite nam poruku..."></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Pošalji</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Podaci</h3>
+          <p><strong>EST VIA</strong><br/>Jakova Gotovca 1, Zagreb<br/>☎️ 098 947 8679<br/>✉️ <a href="mailto:estviaobrt@gmail.com">estviaobrt@gmail.com</a></p>
+          <p><a class="btn btn-outline" href="#usluge">Saznaj više o uslugama</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA traka -->
+  <section id="cta" class="reveal" style="border-top:none;padding:30px 0;background:linear-gradient(90deg, rgba(189,254,243,.35), rgba(255,239,129,.35));">
+    <div class="container" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <p class="lead" style="margin:0;font-size:18px">Imate pitanje? Pišite nam na <a href="mailto:estviaobrt@gmail.com">estviaobrt@gmail.com</a></p>
+      <a class="btn btn-primary" href="#kontakt">Pošaljite upit</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> EST VIA — Sva prava pridržana.</small>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+      },{threshold:0.15});
+      els.forEach(el=>io.observe(el));
+    })();
+  </script>
+</body>
+</html>
